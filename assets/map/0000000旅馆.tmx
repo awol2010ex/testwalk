@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="30" height="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="0000000旅馆" tilewidth="32" tileheight="32">
+  <image source="0000000旅馆.png" width="256" height="2000"/>
+ </tileset>
+ <layer name="块层 1" width="30" height="15">
+  <data encoding="base64" compression="zlib">
+   eJwVzGV4FgQAhdGP7hzd3d0No7s7NpqRSkpLjO7uGCkpMboEBkpNSSUtUBoVBQzi+OP8us99YwQCgZjEIjZxiEs84jOCkYxiNGMYy6eM43f+4CV/8heveM0bescIBPrQl370ZwAJbAlJRGKSkJRkJGc8E5hIOJOYzBSm8jf/8C//8ZZ3vCegP5BBDGYIQxlGCnNKgkhFatKQlnRMYzozmMksZjOHuf+nNWISi9jEIS7xiM8IRjKK0YxhLOl9M5CRTGQmC1nJxjzms4CFLGIxS1hKAo2EJCIxSUhKMpIznglMJJxJTCa7bw5ykovc5CEv+VjGclawklWsZg1rSaGRkiBSkZo0pCUd05jODGYyi9nk9y1AQQpRmCIUpRgRrGM9G9jIJjbzGek1MpCRTGQmC1nJxjzms4CFLGIxxX1LUJJSlKYMZSnHFrayje3sYCefs4vsGjnISS5yk4e85GMZy1nBSlaxmvK+FahIJSpThapUYzd72Esk+9jPAQ6SX6MABSlEYYpQlGJEsI71bGAjmwj2rU4NalKL2tShLoc4zBGOcozjnOALimuUoCSlKE0ZylKOLWxlG9vZwU7q+danAQ1pRGOa0JSTnOI0UZzhLF/yFeU1KlCRSlSmClWpxm72sJdI9rGfZr7NaUFLWtGaNrTlHOe5wEUuEc3XfEOwRnVqUJNa1KYOdTnEYY5wlGMcp51vezrQkU6EEEpnLnOFq1zjOjf4lu+op1GfBjSkEY1pQlNOcorTRHGGs3Tx7Uo3utODnvQijJvc4jZ3uMs9vucHmmk0pwUtaUVr2tCWc5znAhe5RDS9ffvQl370ZwAf8TE/8hM/c58H/MKvPKSdRns60JFOhBBKZy5zhatc4zo3GOg7iMEMYSjD+IThPOIxT3jKM57zgt/ootGVbnSnBz3pRRg3ucVt7nCXe3wAkcbPEw==
+  </data>
+ </layer>
+</map>

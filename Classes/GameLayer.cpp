@@ -49,6 +49,8 @@ bool GameLayer::init()
     pMenu->setPosition( CCPointZero );
     this->addChild(pMenu, 1);
 
+    //初始化地图
+    this->initTileMap();
     return true;
 }
 
@@ -60,3 +62,16 @@ void GameLayer::menuCloseCallback(CCObject* pSender)
     exit(0);
 #endif
 }
+
+//初始化地图
+void GameLayer::initTileMap() {
+	_tileMap = CCTMXTiledMap::create("map/0000000_hotel.tmx");
+	CCObject *pObject = NULL;
+	CCARRAY_FOREACH(_tileMap->getChildren(), pObject)
+	{
+		CCTMXLayer *child = (CCTMXLayer*) pObject;
+		child->getTexture()->setAliasTexParameters();
+	}
+	this->addChild(_tileMap, -6);
+}
+

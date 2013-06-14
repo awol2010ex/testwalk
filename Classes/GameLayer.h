@@ -17,6 +17,11 @@ public:
 
     // implement the "static node()" method manually
     CREATE_FUNC(GameLayer);
+
+    //初始化地图
+    void initTileMap();
+
+    cocos2d::CCTMXTiledMap *_tileMap;//地图
 };
 
 #endif // __HELLOWORLD_SCENE_H__

@@ -6,20 +6,7 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-CCScene* GameLayer::scene()
-{
-    // 'scene' is an autorelease object
-    CCScene *scene = CCScene::create();
-    
-    // 'layer' is an autorelease object
-    GameLayer *layer = GameLayer::create();
 
-    // add layer as a child to scene
-    scene->addChild(layer);
-
-    // return the scene
-    return scene;
-}
 
 // on "init" you need to initialize your instance
 bool GameLayer::init()

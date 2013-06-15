@@ -10,7 +10,8 @@ LOCAL_SRC_FILES := test/main.cpp \
                    ../Classes/Pokemon.cpp \
                    ../Classes/AppDelegate.cpp \
                    ../Classes/GameLayer.cpp \
-                   ../Classes/ActionSprite.cpp 
+                   ../Classes/ActionSprite.cpp \
+                   ../Classes/GameScene.cpp \
                    
                    
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../Classes                   

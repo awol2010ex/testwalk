@@ -1,4 +1,6 @@
+#include "Pokemon.h"
 #include "GameLayer.h"
+
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
@@ -49,8 +51,18 @@ bool GameLayer::init()
     pMenu->setPosition( CCPointZero );
     this->addChild(pMenu, 1);
 
+
     //初始化地图
     this->initTileMap();
+
+    //batchNodes
+    _actors = CCSpriteBatchNode::create("sprite/charmeleon.png");
+    _actors->getTexture()->setAliasTexParameters();
+    this->addChild(_actors, -5);
+
+    //初始化精灵
+    this->initPokemon() ;
+
     return true;
 }
 
@@ -74,4 +86,16 @@ void GameLayer::initTileMap() {
 	}
 	this->addChild(_tileMap, -6);
 }
+//精灵初始化
+void GameLayer::initPokemon() {
 
+
+	_pokemon = Pokemon::createWithBatchNode(_actors);
+
+	_actors->addChild(_pokemon);
+	_pokemon->setPosition(ccp(_pokemon->getCenterToSides()+200, 80));
+	_pokemon->setDesiredPosition(_pokemon->getPosition());
+	_pokemon->idle();
+
+
+}

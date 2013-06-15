@@ -41,7 +41,6 @@ void ActionSprite::hurtWithDamage(float damage)
 	if (_actionState != kActionStateKnockedOut)
 	{
 		int randomSound = random_range(0, 1);
-		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(CCString::createWithFormat("pd_hit%d.wav", randomSound)->getCString());
 		this->stopAllActions();
 		this->runAction(_hurtAction);
 		_actionState = kActionStateHurt;

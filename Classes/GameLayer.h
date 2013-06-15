@@ -2,7 +2,7 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
-
+#include "Pokemon.h"
 class GameLayer : public cocos2d::CCLayer
 {
 public:
@@ -20,7 +20,10 @@ public:
 
     //初始化地图
     void initTileMap();
-
+    //精灵初始化
+    void initPokemon() ;
+    Pokemon *_pokemon;//精灵
+    cocos2d::CCSpriteBatchNode *_actors;
     cocos2d::CCTMXTiledMap *_tileMap;//地图
 };
 

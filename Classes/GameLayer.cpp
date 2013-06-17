@@ -24,21 +24,6 @@ bool GameLayer::init() {
 
 		this->setTouchEnabled(true);
 
-		/////////////////////////////
-		// 2. add a menu item with "X" image, which is clicked to quit the program
-		//    you may modify it.
-
-		// add a "close" icon to exit the progress. it's an autorelease object
-		CCMenuItemImage *pCloseItem = CCMenuItemImage::create("CloseNormal.png",
-				"CloseSelected.png", this,
-				menu_selector(GameLayer::menuCloseCallback));
-		pCloseItem->setPosition(
-				ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20));
-
-		// create menu, it's an autorelease object
-		CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
-		pMenu->setPosition(CCPointZero);
-		this->addChild(pMenu, 1);
 
 		//初始化地图
 		this->initTileMap();
@@ -60,13 +45,7 @@ bool GameLayer::init() {
 	return true;
 }
 
-void GameLayer::menuCloseCallback(CCObject* pSender) {
-	CCDirector::sharedDirector()->end();
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	exit(0);
-#endif
-}
 
 //初始化地图
 void GameLayer::initTileMap() {
@@ -124,8 +103,9 @@ void GameLayer::updatePositions() {
 					- _pokemon->getCenterToSides(),
 			MAX(_pokemon->getCenterToSides(), _pokemon->getDesiredPosition().x));
 	float posY = MIN(
-			3 * _tileMap->getTileSize().height + _pokemon->getCenterToBottom(),
-			MAX(_pokemon->getCenterToBottom(), _pokemon->getDesiredPosition().y));
+			_tileMap->getMapSize().height *_tileMap->getTileSize().height - _pokemon->getCenterToBottom(),
+			MAX(_pokemon->getCenterToBottom(),
+					_pokemon->getDesiredPosition().y));
 	_pokemon->setPosition(ccp(posX, posY));
 
 }

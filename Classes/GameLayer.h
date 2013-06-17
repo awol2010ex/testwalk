@@ -29,8 +29,7 @@ public:
 	void updatePositions();
 	void setViewpointCenter(cocos2d::CCPoint position);
 	void reorderActors();
-	// a selector callback
-	void menuCloseCallback(CCObject* pSender);
+
 
 	Pokemon *_pokemon; //精灵
 	cocos2d::CCSpriteBatchNode *_actors;

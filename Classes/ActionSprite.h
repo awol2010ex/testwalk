@@ -47,4 +47,7 @@ public:
 
 	CC_SYNTHESIZE(BoundingBox, _hitBox, Hitbox);
 	CC_SYNTHESIZE(BoundingBox, _attackBox, AttackBox);
+
+	//direct
+	CC_SYNTHESIZE(float, _direct, Direct);
 };

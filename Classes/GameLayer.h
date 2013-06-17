@@ -25,6 +25,10 @@ public:
 			cocos2d::CCPoint direction);
 	virtual void simpleDPadTouchEnded(SimpleDPad *simpleDPad);
 
+	void update(float dt);
+	void updatePositions();
+	void setViewpointCenter(cocos2d::CCPoint position);
+	void reorderActors();
 	// a selector callback
 	void menuCloseCallback(CCObject* pSender);
 

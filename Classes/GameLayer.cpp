@@ -91,21 +91,70 @@ void GameLayer::initPokemon() {
 
 }
 
-
-
 void GameLayer::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent) {
 
 }
 
 void GameLayer::didChangeDirectionTo(SimpleDPad *simpleDPad,
 		CCPoint direction) {
-
+	_pokemon->walkWithDirection(direction);
 }
 
 void GameLayer::isHoldingDirection(SimpleDPad *simpleDPad, CCPoint direction) {
-
+	_pokemon->walkWithDirection(direction);
 }
 
 void GameLayer::simpleDPadTouchEnded(SimpleDPad *simpleDPad) {
+	if (_pokemon->getActionState() == kActionStateWalk) {
+		_pokemon->idle();
+	}
+}
 
+//实时更新
+void GameLayer::update(float dt) {
+	_pokemon->update(dt);
+	this->updatePositions();
+	this->reorderActors();
+	this->setViewpointCenter(_pokemon->getPosition());
+}
+//更新位置
+void GameLayer::updatePositions() {
+	float posX = MIN(
+			_tileMap->getMapSize().width * _tileMap->getTileSize().width
+					- _pokemon->getCenterToSides(),
+			MAX(_pokemon->getCenterToSides(), _pokemon->getDesiredPosition().x));
+	float posY = MIN(
+			3 * _tileMap->getTileSize().height + _pokemon->getCenterToBottom(),
+			MAX(_pokemon->getCenterToBottom(), _pokemon->getDesiredPosition().y));
+	_pokemon->setPosition(ccp(posX, posY));
+
+}
+//更新地图位置
+void GameLayer::setViewpointCenter(CCPoint position) {
+	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+
+	int x = MAX(position.x, winSize.width / 2);
+	int y = MAX(position.y, winSize.height / 2);
+	x = MIN(x,
+			(_tileMap->getMapSize().width * _tileMap->getTileSize().width)
+					- winSize.width / 2);
+	y = MIN(y,
+			(_tileMap->getMapSize().height * _tileMap->getTileSize().height)
+					- winSize.height / 2);
+	CCPoint actualPosition = ccp(x, y);
+
+	CCPoint centerOfView = ccp(winSize.width / 2, winSize.height / 2);
+	CCPoint viewPoint = ccpSub(centerOfView, actualPosition);
+	this->setPosition(viewPoint);
+}
+//重新对batchNode排序
+void GameLayer::reorderActors() {
+	CCObject *pObject = NULL;
+	CCARRAY_FOREACH(_actors->getChildren(), pObject)
+	{
+		ActionSprite *sprite = (ActionSprite*) pObject;
+		_actors->reorderChild(sprite,
+				(_tileMap->getMapSize().height * _tileMap->getTileSize().height)
+						- sprite->getPosition().y);
+	}
 }

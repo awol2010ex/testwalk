@@ -9,6 +9,8 @@ ActionSprite::ActionSprite(void)
 	_walkAction = NULL;
 	_hurtAction = NULL;
 	_knockedOutAction = NULL;
+
+	_direct =0;
 }
 
 ActionSprite::~ActionSprite(void)
@@ -72,7 +74,7 @@ void ActionSprite::walkWithDirection(CCPoint direction)
 	if (_actionState == kActionStateWalk)
 	{
 		_velocity = ccp(direction.x * _walkSpeed, direction.y * _walkSpeed);
-		if (_velocity.x >= 0)
+		if (_velocity.x *_direct>= 0)
 		{
 			this->setScaleX(1.0);
 		} 

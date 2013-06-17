@@ -2,7 +2,10 @@
 #include "GameLayer.h"
 
 #include "SimpleAudioEngine.h"
+#include <android/log.h>
 
+#define  LOG_TAG    "main"
+#define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
 using namespace cocos2d;
 using namespace CocosDenshion;
 
@@ -24,7 +27,6 @@ bool GameLayer::init() {
 
 		this->setTouchEnabled(true);
 
-
 		//初始化地图
 		this->initTileMap();
 
@@ -44,8 +46,6 @@ bool GameLayer::init() {
 
 	return true;
 }
-
-
 
 //初始化地图
 void GameLayer::initTileMap() {
@@ -96,19 +96,46 @@ void GameLayer::update(float dt) {
 	this->reorderActors();
 	this->setViewpointCenter(_pokemon->getPosition());
 }
+
+CCPoint GameLayer::tileCoordForPosition(CCPoint pos) {
+	CCSize mapTiledNum = _tileMap->getMapSize();
+	CCSize tiledSize = _tileMap->getTileSize();
+
+	int x = (pos.x - _tileMap->getPosition().x) / tiledSize.width;
+	int y = (pos.y - _tileMap->getPosition().y) / tiledSize.height;
+
+	/* Cocos2d-x的默认Y坐标是由下至上的，所以要做一个相减操作 */
+	y = mapTiledNum.height - y;
+
+	return ccp(x, y);
+}
 //更新位置
 void GameLayer::updatePositions() {
 	float posX = MIN(
 			_tileMap->getMapSize().width * _tileMap->getTileSize().width
 					- _pokemon->getCenterToSides(),
-			MAX(_pokemon->getCenterToSides(), _pokemon->getDesiredPosition().x));
+			MAX(_pokemon->getCenterToSides(),
+					_pokemon->getDesiredPosition().x));
 	float posY = MIN(
-			_tileMap->getMapSize().height *_tileMap->getTileSize().height - _pokemon->getCenterToBottom(),
+			_tileMap->getMapSize().height * _tileMap->getTileSize().height
+					- _pokemon->getCenterToBottom(),
 			MAX(_pokemon->getCenterToBottom(),
 					_pokemon->getDesiredPosition().y));
-	_pokemon->setPosition(ccp(posX, posY));
+
+	CCTMXLayer* wall = _tileMap->layerNamed("wall");
+	/* 获得当前主角在地图中的格子位置 */
+	CCPoint tiledPos = this->tileCoordForPosition(ccp(posX, posY));
+	/* 获取地图格子的唯一标识 */
+	int tiledGid = wall->tileGIDAt(tiledPos);
+	//LOGD(CCString::createWithFormat("tiledGid%d", tiledGid)->getCString());
+	if (tiledGid != 0) {
+
+	} else {
+		_pokemon->setPosition(ccp(posX, posY));
+	}
 
 }
+
 //更新地图位置
 void GameLayer::setViewpointCenter(CCPoint position) {
 	CCSize winSize = CCDirector::sharedDirector()->getWinSize();

@@ -30,7 +30,7 @@ public:
 	void setViewpointCenter(cocos2d::CCPoint position);
 	void reorderActors();
 
-
+	cocos2d::CCPoint tileCoordForPosition( cocos2d::CCPoint pos );//地图坐标
 	Pokemon *_pokemon; //精灵
 	cocos2d::CCSpriteBatchNode *_actors;
 	cocos2d::CCTMXTiledMap *_tileMap; //地图

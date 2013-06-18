@@ -12,4 +12,6 @@ public:
 
 	// a selector callback
 	void menuCloseCallback(CCObject* pSender);
+
+	cocos2d::CCSpriteBatchNode *_actors;
 };

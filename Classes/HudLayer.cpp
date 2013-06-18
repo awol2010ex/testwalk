@@ -3,6 +3,7 @@ using namespace cocos2d;
 
 HudLayer::HudLayer(void) {
 	_dPad = NULL;
+	_actors = NULL;
 }
 
 HudLayer::~HudLayer(void) {
@@ -24,14 +25,19 @@ bool HudLayer::init() {
 		pMenu->setPosition(CCPointZero);
 		this->addChild(pMenu, 1);
 
-		CCSpriteFrame *frame = CCSpriteFrame::create("pad/pad_and_button.png",
+		//batchNodes
+		_actors = CCSpriteBatchNode::create("pad/pad_and_button.png");
+		_actors->getTexture()->setAliasTexParameters();
+		this->addChild(_actors, -5);
+
+		CCSpriteFrame *frame = CCSpriteFrame::createWithTexture(_actors->getTexture(),
 				CCRectMake(290, 215, 58, 58));
 
 		_dPad = SimpleDPad::dPadWithFrame(frame, 64);
 		_dPad->setPosition(ccp(64.0, 64.0));
 		_dPad->setOpacity(100);
 		_dPad->setScale(2.0);
-		this->addChild(_dPad);
+		_actors->addChild(_dPad);
 
 		bRet = true;
 	} while (0);

@@ -45,8 +45,25 @@ bool Pokemon::init(CCSpriteBatchNode* _actors) {
 		frame = CCSpriteFrame::createWithTexture(_actors->getTexture(),
 				CCRectMake(310, 40, 70, 70));
 		walkFrames->addObject(frame);
-		CCAnimation *walkAnimation = CCAnimation::createWithSpriteFrames(walkFrames, float(1.0 / 12.0));
-		this->setWalkAction(CCRepeatForever::create(CCAnimate::create(walkAnimation)));
+		CCAnimation *walkAnimation = CCAnimation::createWithSpriteFrames(
+				walkFrames, float(1.0 / 12.0));
+		this->setWalkAction(
+				CCRepeatForever::create(CCAnimate::create(walkAnimation)));
+
+		//attack animation
+		CCArray *attackFrames = CCArray::createWithCapacity(2);
+		frame = CCSpriteFrame::createWithTexture(_actors->getTexture(),
+				CCRectMake(20, 130, 140, 70));
+		attackFrames->addObject(frame);
+		frame = CCSpriteFrame::createWithTexture(_actors->getTexture(),
+				CCRectMake(160, 130, 140, 70));
+		attackFrames->addObject(frame);
+		CCAnimation *attackAnimation = CCAnimation::createWithSpriteFrames(
+				attackFrames, float(1.0 /6.0));
+		this->setAttackAction(
+				CCSequence::create(CCAnimate::create(attackAnimation),
+						CCCallFunc::create(this,
+								callfunc_selector(Pokemon::idle)), NULL));
 
 		//中心距离
 		this->setCenterToBottom(35.0);

@@ -71,7 +71,7 @@ void GameLayer::initPokemon() {
 }
 
 void GameLayer::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent) {
-
+	_pokemon->attack();
 }
 
 void GameLayer::didChangeDirectionTo(SimpleDPad *simpleDPad,

@@ -8,8 +8,9 @@ public:
 	~Pokemon(void);
 
 
-	bool init(CCSpriteBatchNode* _actors);
+	CREATE_FUNC(Pokemon);
+	bool init();
 	void knockout();
 
-	static Pokemon* createWithBatchNode(CCSpriteBatchNode* _actors);
+
 };

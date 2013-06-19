@@ -61,7 +61,7 @@ void GameLayer::initTileMap() {
 //精灵初始化
 void GameLayer::initPokemon() {
 
-	_pokemon = Pokemon::createWithBatchNode(_actors);
+	_pokemon = Pokemon::create();
 
 	_actors->addChild(_pokemon);
 	_pokemon->setPosition(ccp(_pokemon->getCenterToSides() + 200, 80));

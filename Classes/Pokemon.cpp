@@ -8,26 +8,23 @@ Pokemon::Pokemon(void) {
 Pokemon::~Pokemon(void) {
 }
 
-bool Pokemon::init(CCSpriteBatchNode* _actors) {
-
+bool Pokemon::init() {
+	CCSpriteFrame *frame = NULL;
 	bool bRet = false;
 	do {
-		int i;
-		CCSpriteFrame *frame = NULL;
+		//初始
+		CC_BREAK_IF(!ActionSprite::initWithSpriteFrameName("charmeleon_idle_0.png"));
+
 		//idle animation
 		CCArray *idleFrames = CCArray::createWithCapacity(2);
 
-		frame = CCSpriteFrame::createWithTexture(_actors->getTexture(),
-				CCRectMake(20, 40, 60, 60));
+		frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("charmeleon_idle_0.png");
+
 		idleFrames->addObject(frame);
-		frame = CCSpriteFrame::createWithTexture(_actors->getTexture(),
-				CCRectMake(80, 40, 60, 60));
+		frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("charmeleon_idle_1.png");
 		idleFrames->addObject(frame);
 
-		//初始
-		CC_BREAK_IF(
-				!ActionSprite::initWithSpriteFrame(
-						(CCSpriteFrame*) idleFrames->objectAtIndex(0)));
+
 
 		CCAnimation *idleAnimation = CCAnimation::createWithSpriteFrames(
 				idleFrames, 0.2);
@@ -36,14 +33,11 @@ bool Pokemon::init(CCSpriteBatchNode* _actors) {
 
 		//walk animation
 		CCArray *walkFrames = CCArray::createWithCapacity(3);
-		frame = CCSpriteFrame::createWithTexture(_actors->getTexture(),
-				CCRectMake(170, 40, 70, 70));
+		frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("charmeleon_walk_0.png");
 		walkFrames->addObject(frame);
-		frame = CCSpriteFrame::createWithTexture(_actors->getTexture(),
-				CCRectMake(240, 40, 70, 70));
+		frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("charmeleon_walk_1.png");
 		walkFrames->addObject(frame);
-		frame = CCSpriteFrame::createWithTexture(_actors->getTexture(),
-				CCRectMake(310, 40, 70, 70));
+		frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("charmeleon_walk_2.png");
 		walkFrames->addObject(frame);
 		CCAnimation *walkAnimation = CCAnimation::createWithSpriteFrames(
 				walkFrames, float(1.0 / 12.0));
@@ -52,11 +46,10 @@ bool Pokemon::init(CCSpriteBatchNode* _actors) {
 
 		//attack animation
 		CCArray *attackFrames = CCArray::createWithCapacity(2);
-		frame = CCSpriteFrame::createWithTexture(_actors->getTexture(),
-				CCRectMake(20, 130, 140, 70));
+
+		frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("charmeleon_attack_0.png");
 		attackFrames->addObject(frame);
-		frame = CCSpriteFrame::createWithTexture(_actors->getTexture(),
-				CCRectMake(160, 130, 140, 70));
+		frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("charmeleon_attack_1.png");
 		attackFrames->addObject(frame);
 		CCAnimation *attackAnimation = CCAnimation::createWithSpriteFrames(
 				attackFrames, float(1.0 /6.0));
@@ -84,14 +77,3 @@ void Pokemon::knockout() {
 	ActionSprite::knockout();
 }
 
-Pokemon* Pokemon::createWithBatchNode(CCSpriteBatchNode* _actors) {
-	Pokemon *pRet = new Pokemon();
-	if (pRet && pRet->init(_actors)) {
-		pRet->autorelease();
-		return pRet;
-	} else {
-		delete pRet;
-		pRet = NULL;
-		return NULL;
-	}
-}

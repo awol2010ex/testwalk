@@ -14,6 +14,11 @@ bool GameScene::init() {
 	do {
 		CC_BREAK_IF(!CCScene::init());
 
+		CCSpriteFrameCache* cache =
+					CCSpriteFrameCache::sharedSpriteFrameCache();
+		cache->addSpriteFramesWithFile("sprite/charmeleon.plist", "sprite/charmeleon.png");
+
+
 		_gameLayer = GameLayer::create();
 		this->addChild(_gameLayer, 0);
 		_hudLayer = HudLayer::create();

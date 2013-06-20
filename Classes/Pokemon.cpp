@@ -63,7 +63,7 @@ bool Pokemon::init() {
 		this->setCenterToSides(35.0);
 
 		//步速
-		this->setWalkSpeed(80.0);
+		this->setWalkSpeed(160.0);
 
 		//初始方向
 		this->setDirect(-1.0);

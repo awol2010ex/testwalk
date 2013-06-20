@@ -38,9 +38,9 @@ protected:
 
 	void touchDelegateRelease();
 	void touchDelegateRetain();
-
-private:
 	void updateVelocity(cocos2d::CCPoint point);
+private:
+
 	void setTouchRadius();
 
 };

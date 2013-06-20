@@ -17,16 +17,18 @@ bool GameScene::init() {
 		CCSpriteFrameCache* cache =
 					CCSpriteFrameCache::sharedSpriteFrameCache();
 		cache->addSpriteFramesWithFile("sprite/charmeleon.plist", "sprite/charmeleon.png");
-
+		cache->addSpriteFramesWithFile("UI.plist", "UI.png");
 
 		_gameLayer = GameLayer::create();
 		this->addChild(_gameLayer, 0);
 		_hudLayer = HudLayer::create();
 		this->addChild(_hudLayer, 1);
-		_hudLayer->getDPad()->setDelegate(_gameLayer);
+		_hudLayer->getJoystick()->setDelegate(_gameLayer);
 		_gameLayer->setHud(_hudLayer);
+
 		bRet = true;
 	} while (0);
 
 	return bRet;
 }
+

@@ -13,11 +13,11 @@ LOCAL_SRC_FILES := test/main.cpp \
                    ../Classes/HudLayer.cpp \
                    ../Classes/ActionSprite.cpp \
                    ../Classes/GameScene.cpp \
-                   ../Classes/SimpleDPad.cpp \
                    ../Classes/Sneaky/SneakyButton.cpp \
                    ../Classes/Sneaky/SneakyButtonSkinnedBase.cpp \
                    ../Classes/Sneaky/SneakyJoystick.cpp \
-                   ../Classes/Sneaky/SneakyJoystickSkinnedBase.cpp 
+                   ../Classes/Sneaky/SneakyJoystickSkinnedBase.cpp \
+                   ../Classes/SneakyJoystickExt.cpp
                    
                    
                    

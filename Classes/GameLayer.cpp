@@ -73,7 +73,7 @@ void GameLayer::initPokemon() {
 void GameLayer::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent) {
 	_pokemon->attack();
 }
-
+/*
 void GameLayer::didChangeDirectionTo(SimpleDPad *simpleDPad,
 		CCPoint direction) {
 	_pokemon->walkWithDirection(direction);
@@ -89,6 +89,24 @@ void GameLayer::simpleDPadTouchEnded(SimpleDPad *simpleDPad) {
 	}
 }
 
+
+
+*/
+
+void GameLayer::didChangeDirectionTo(SneakyJoystickExt *joystick,
+		CCPoint direction) {
+	_pokemon->walkWithDirection(direction);
+}
+
+void GameLayer::isHoldingDirection(SneakyJoystickExt *joystick, CCPoint direction) {
+	_pokemon->walkWithDirection(direction);
+}
+
+void GameLayer::simpleJoystickTouchEnded(SneakyJoystickExt *joystick) {
+	if (_pokemon->getActionState() == kActionStateWalk) {
+		_pokemon->idle();
+	}
+}
 //实时更新
 void GameLayer::update(float dt) {
 	_pokemon->update(dt);
@@ -164,4 +182,18 @@ void GameLayer::reorderActors() {
 				(_tileMap->getMapSize().height * _tileMap->getTileSize().height)
 						- sprite->getPosition().y);
 	}
+}
+
+//按方向行走
+void GameLayer::setMoveDirection(cocos2d::CCPoint _direction)
+{
+	mDirection = _direction;
+
+
+}
+void GameLayer::setIsTouching(bool isTouching)//是否按着
+{
+    if(!isTouching)	{
+    	_pokemon->idle();
+    }
 }

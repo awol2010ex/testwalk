@@ -13,4 +13,6 @@ public:
 
 	CC_SYNTHESIZE(GameLayer*, _gameLayer, GameLayer);
 	CC_SYNTHESIZE(HudLayer*, _hudLayer, HudLayer);
+
+	void broadcastInput(float dt);
 };

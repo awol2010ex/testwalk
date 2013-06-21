@@ -17,8 +17,7 @@ public:
 	//精灵初始化
 	void initPokemon();
 
-	 virtual void ccTouchesBegan(cocos2d::CCSet *pTouches,
-	 cocos2d::CCEvent *pEvent);
+	// virtual void ccTouchesBegan(cocos2d::CCSet *pTouches,cocos2d::CCEvent *pEvent);
 	 /*
 	 virtual void didChangeDirectionTo(SimpleDPad *simpleDPad,
 	 cocos2d::CCPoint direction);
@@ -48,7 +47,7 @@ public:
 	CC_SYNTHESIZE(HudLayer*, _hud, Hud);
 
 	void setMoveDirection(cocos2d::CCPoint _direction); //移动方向
-	void setIsTouching(bool isTouching); //是否按着
 	cocos2d::CCPoint mDirection;
 
+	void setInBtnState(InBtnState pBtnState);
 };

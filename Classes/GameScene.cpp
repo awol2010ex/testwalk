@@ -7,6 +7,8 @@ GameScene::GameScene(void) {
 }
 
 GameScene::~GameScene(void) {
+	delete _hudLayer;
+	delete _gameLayer;
 }
 
 bool GameScene::init() {
@@ -23,12 +25,20 @@ bool GameScene::init() {
 		this->addChild(_gameLayer, 0);
 		_hudLayer = HudLayer::create();
 		this->addChild(_hudLayer, 1);
-		_hudLayer->getJoystick()->setDelegate(_gameLayer);
+		_hudLayer->getJoystick()->setDelegate(_gameLayer);//摇杆
 		_gameLayer->setHud(_hudLayer);
 
+
+		//定时同步按钮状态
+		this->schedule(schedule_selector(GameScene::broadcastInput));
 		bRet = true;
 	} while (0);
 
 	return bRet;
 }
 
+
+void GameScene::broadcastInput(float dt)
+{
+	_gameLayer->setInBtnState(_hudLayer->getInBtnState());
+}

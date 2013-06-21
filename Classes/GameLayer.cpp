@@ -1,6 +1,6 @@
 #include "Pokemon.h"
 #include "GameLayer.h"
-
+#include "HudLayer.h"
 #include "SimpleAudioEngine.h"
 #include <android/log.h>
 
@@ -69,10 +69,11 @@ void GameLayer::initPokemon() {
 	_pokemon->idle();
 
 }
-
+/*
 void GameLayer::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent) {
 	_pokemon->attack();
 }
+*/
 /*
 void GameLayer::didChangeDirectionTo(SimpleDPad *simpleDPad,
 		CCPoint direction) {
@@ -191,9 +192,10 @@ void GameLayer::setMoveDirection(cocos2d::CCPoint _direction)
 
 
 }
-void GameLayer::setIsTouching(bool isTouching)//是否按着
-{
-    if(!isTouching)	{
-    	_pokemon->idle();
-    }
-}
+void GameLayer::setInBtnState(InBtnState pBtnState)
+	{
+		if( pBtnState==IN_BTN_PRESSED){
+			_pokemon->attack();
+		}
+
+	}

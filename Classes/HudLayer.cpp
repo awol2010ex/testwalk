@@ -4,6 +4,9 @@ const float JOYSTICK_POS_X = 100;
 const float JOYSTICK_POS_Y = 100;
 const float JOYSTICK_DEAD_RADIUS = 10;
 const float JOYSTICK_THRESHOLD = 0.4f;
+
+const float BTN_A_POS_X = 430;
+const float BTN_A_POS_Y = 50;
 HudLayer::HudLayer(void) {
 	//_dPad = NULL;
 	//_actors = NULL;
@@ -62,6 +65,27 @@ bool HudLayer::init() {
 		jstickSkin->setPosition(ccp(JOYSTICK_POS_X, JOYSTICK_POS_Y));
 		jstickSkin->setJoystick(mJoystick);
 		this->addChild(jstickSkin);
+
+		//按钮
+		mButtonA = NULL;
+		mButtonA = new SneakyButton();
+		mButtonA->initWithRect(CCRectZero);
+		mButtonA->setIsToggleable(false);
+		mButtonA->setIsHoldable(true);
+		SneakyButtonSkinnedBase* btnASkin = new SneakyButtonSkinnedBase();
+		btnASkin->autorelease();
+		btnASkin->init();
+		btnASkin->setPosition(ccp(CCDirector::sharedDirector()->getWinSize().width - BTN_A_POS_X, BTN_A_POS_Y));
+		btnASkin->setDefaultSprite(
+				CCSprite::createWithSpriteFrameName("button-default.png"));
+		btnASkin->setPressSprite(
+				CCSprite::createWithSpriteFrameName("button-pressed.png"));
+		btnASkin->setActivatedSprite(
+				CCSprite::createWithSpriteFrameName("button-activated.png"));
+		//btnASkin->setDisabledSprite(CCSprite::createWithSpriteFrameName("button-disabled.png"));
+		btnASkin->setButton(mButtonA);
+		this->addChild(btnASkin);
+
 		bRet = true;
 	} while (0);
 
@@ -74,4 +98,16 @@ void HudLayer::menuCloseCallback(CCObject* pSender) {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	exit(0);
 #endif
+}
+
+
+//按钮状态
+InBtnState HudLayer::getInBtnState()
+{
+	InBtnState retState = IN_BTN_NO_PRESSED;
+
+	if (mButtonA->getIsActive())
+		retState = IN_BTN_PRESSED;
+
+	return retState;
 }

@@ -17,7 +17,7 @@ LOCAL_SRC_FILES := test/main.cpp \
                    ../Classes/Sneaky/SneakyButtonSkinnedBase.cpp \
                    ../Classes/Sneaky/SneakyJoystick.cpp \
                    ../Classes/Sneaky/SneakyJoystickSkinnedBase.cpp \
-                   ../Classes/SneakyJoystickExt.cpp
+                   ../Classes/SneakyJoystickExt.cpp 
                    
                    
                    

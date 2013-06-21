@@ -7,6 +7,11 @@
 #include "Sneaky/SneakyJoystick.h"
 #include "Sneaky/SneakyJoystickSkinnedBase.h"
 #include "SneakyJoystickExt.h"
+
+
+enum InBtnState {
+	IN_BTN_PRESSED, IN_BTN_NO_PRESSED};
+
 class HudLayer: public cocos2d::CCLayer {
 public:
 	HudLayer(void);
@@ -19,7 +24,8 @@ public:
 	// a selector callback
 	void menuCloseCallback(CCObject* pSender);
 	CC_SYNTHESIZE(SneakyJoystickExt*, mJoystick, Joystick); //手柄
+	CC_SYNTHESIZE(SneakyButton*, mButtonA, ButtonA); //按钮
 
-	//cocos2d::CCSpriteBatchNode *_actors;
+	InBtnState getInBtnState();
 
 };
